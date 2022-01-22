@@ -10,7 +10,7 @@
     <h1>自販機</h1>
     <section>
       <h3>自販機にお金を入れる</h3>
-      <button id="add-button-100">100円入れる</button>
+      <button id="add-button-50">50円入れる</button>
       <h4>↓財布↓</h4>
       <div id="display-saifu">1000</div>
       <h4>↓投入金額↓</h4>
@@ -19,6 +19,7 @@
     <section>
       <h3>商品を買う</h3>
       <button id="buy-button-tea">お茶(100円)</button>
+      <button id="buy-button-bear">ビール(150円)</button>
     </section>
     <section>
       <h3>買った商品</h3>
@@ -30,8 +31,9 @@
     <script>
       // HTML要素を取得する
       const buyButtonTea = document.getElementById("buy-button-tea")
+      const buyButtonBear = document.getElementById("buy-button-bear")
       const displayItems = document.getElementById("display-items")
-      const addMoney = document.getElementById("add-button-100")
+      const addMoney = document.getElementById("add-button-50")
       const displaysaifu = document.getElementById("display-saifu")
       const jihankimoney = document.getElementById("display-jihanki-money")
       const otsuriMoney = document.getElementById("otsuri-button")
@@ -51,12 +53,20 @@
         }
       }
 
+      buyButtonBear.onclick = function () {
+        if (jihankiMoney >= 150) {
+          displayItems.textContent += "🍺" //処理
+          jihankiMoney -= 150
+          jihankimoney.textContent = jihankiMoney
+        }
+      }
+
       // addMoney をクリックしたときに、saifuから 100 引いて、jihankiMoney に 100 足すようにしてください。
       addMoney.onclick = function () {
         if (saifu >= 100) {
-          saifu -= 100
+          saifu -= 50
           console.log(saifu)
-          jihankiMoney += 100
+          jihankiMoney += 50
           displaysaifu.textContent = saifu
           jihankimoney.textContent = jihankiMoney
         }
@@ -64,11 +74,10 @@
 
       otsuriMoney.onclick = function () {
         saifu += jihankiMoney
+        jihankiMoney = 0
         displaysaifu.textContent = saifu
         jihankimoney.textContent = jihankiMoney
       }
-
-      //お釣りボタンを押したら投入金額が所持金に戻る
     </script>
   </body>
 </html>
