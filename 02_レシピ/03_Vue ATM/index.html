@@ -12,8 +12,10 @@
         <h1>入力画面</h1>
         <input type="number" v-model="nyuryokugaku" />
         <p>入力額：{{ nyuryokugaku }}円</p>
-        <button v-on:click="nyukin">入金</button>
-        <button v-on:click="syukkin">出金</button>
+        <button v-on:click="nyukin" v-bind:disabled="nyuryokugaku<=0">
+          入金
+        </button>
+        <button v-on:click="syukkin" v-bind:disabled="zandaka<=0">出金</button>
       </div>
 
       <div>

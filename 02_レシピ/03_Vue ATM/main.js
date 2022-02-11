@@ -20,16 +20,16 @@ Vue.createApp({
         type: "入金",
         money: this.nyuryokugaku,
       })
-      this.nyuryokugaku = ""
     },
     syukkin: function () {
-      this.zandaka -= Number(this.nyuryokugaku)
-      this.logs.push({
-        date: new Date(),
-        type: "出金",
-        money: this.nyuryokugaku,
-      })
-      this.nyuryokugaku = ""
+      if (this.zandaka >= this.nyuryokugaku && this.nyuryokugaku > 0) {
+        this.zandaka -= Number(this.nyuryokugaku)
+        this.logs.push({
+          date: new Date(),
+          type: "出金",
+          money: this.nyuryokugaku,
+        })
+      }
     },
   },
 }).mount("#app")
